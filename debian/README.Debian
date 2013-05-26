@@ -1,0 +1,12 @@
+bicyclerepair for Debian
+------------------------
+
+To start using bicyclerepair, see the upstream README.<editor> documentation in
+/usr/share/doc/bicyclerepair.
+
+The vim plugin requires enabling via vim-addons install python_bike, and having
+'filetype plugin on' set in your ~/.vimrc or similar configuration file.
+Without that setting, ftplugins are not loaded and the BicycleRepair functions
+will not be available.
+
+ -- Robert Collins <robertc@robertcollins.net>

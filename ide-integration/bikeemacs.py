@@ -64,7 +64,7 @@ class BRMEmacs(object):
         lisp("""
         (defvar brm-menu nil "Menu for Bicycle Repair Man")
          (easy-menu-define
-          brm-menu py-mode-map "Bicycle Repair Man"
+          brm-menu python-mode-map "Bicycle Repair Man"
           '("BicycleRepairMan"
                    "Queries"
                    ["Find-References" brm-find-references]

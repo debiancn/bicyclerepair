@@ -1,0 +1,4 @@
+addon: python_bike
+description: Python refactoring tool
+files:
+  - ftplugin/python_bike.vim

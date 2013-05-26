@@ -1,0 +1,19 @@
+Source: bicyclerepair
+Section: devel
+Priority: optional
+Maintainer: Robert Collins <robertc@robertcollins.net>
+Build-Depends: debhelper (>= 5.0.37.2)
+Build-Depends-Indep: python-all-dev (>= 2.6.6-3~)
+Homepage: http://bicyclerepair.sourceforge.net/
+Standards-Version: 3.7.2
+
+Package: bicyclerepair
+Architecture: all
+Depends: ${python:Depends}
+Provides: ${python:Provides}
+Suggests: vim-python (>= 1:6.2) | idle | pymacs
+Recommends: vim-addon-manager 
+Description: A refactoring tool for python
+ A framework and refactoring tool for Python. IDE Plugins are included for
+ Pymacs, IDLE and Vim. Using Bicycle Repair Man you can rename classes, methods
+ and variables, and all users of them are found and adjusted appropriately.

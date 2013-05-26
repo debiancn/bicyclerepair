@@ -1,0 +1,68 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+PYTHONS=$(shell pyversions -vr debian/control)
+
+build: build-stamp
+
+build-stamp: 
+	dh_testdir
+
+	# Add here commands to compile the package.
+	#/usr/bin/docbook-to-man debian/bicyclerepair.sgml > bicyclerepair.1
+	#python setup.py build -b build
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	rm -rf build
+	find . -name "*.pyc" | xargs -r rm
+	#rm -rf debian/pbicyclerepair
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	for version in ${PYTHONS};\
+	do\
+		python$$version setup.py install --no-compile --root=debian/bicyclerepair --install-layout=deb;\
+	done
+	cp ide-integration/bike.vim debian/bicyclerepair/usr/share/vim/addons/ftplugin/python_bike.vim
+	cp debian/vim-python_bike.yaml debian/bicyclerepair/usr/share/vim/registry/
+   
+
+# Build architecture-independent files here.
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs ChangeLog
+	dh_installdocs
+	dh_installexamples
+#	dh_install
+	dh_installman
+	dh_compress
+	dh_fixperms
+	dh_python2
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch:
+
+binary: binary-indep
+.PHONY: build clean binary-indep binary-arch binary install configure
